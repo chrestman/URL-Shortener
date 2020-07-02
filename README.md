@@ -1,2 +1,2 @@
 # URL-Shortener
-A tiny URL shortening service running on Express and MongoDB
+A tiny URL shortening service running on NodeJS, Express, and MongoDB
