@@ -6,8 +6,8 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
-
 const db = mongoose.connection
+
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
@@ -16,6 +16,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 })
 
 app.set('view engine', 'ejs')
+
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/', async (req, res) => {
