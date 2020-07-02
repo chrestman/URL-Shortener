@@ -1,9 +1,17 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 
-mongoose.connect('mongodb+srv://lemonsdb:<password>@cluster0.fdzvl.mongodb.net/urlShortener?retryWrites=true&w=majority', {
+const db = mongoose.connection
+db.on('error', error => console.error(error))
+db.once('open', () => console.log('Connected to Mongoose'))
+
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true, useUnifiedTopology: true
 })
 
