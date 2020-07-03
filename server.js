@@ -25,12 +25,14 @@ app.get('/', async (req, res) => {
 }) 
 
 app.post('/shortUrls', async (req, res) => {
-    await ShortUrl.create({ full: req.body.fullUrl })
+    if (req.body.slug)
+    await ShortUrl.create({ full: req.body.fullUrl, slug: req.body.slug })
+    else await ShortUrl.create({full: req.body.fullUrl})
     res.redirect('/')
 })
 
-app.get('/:shortUrl', async (req, res) => {
-    const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
+app.get('/:slug', async (req, res) => {
+    const shortUrl = await ShortUrl.findOne({ slug: req.params.slug })
     if (shortUrl  == null) return res.sendStatus(404)
 
     shortUrl.clicks++

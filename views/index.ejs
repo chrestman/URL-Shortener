@@ -14,7 +14,7 @@
     <form action="/shortUrls" method="POST" class="my-4 form-inline">
         <label for="fullUrl" class="sr-only">URL</label>
         <input required placeholder="URL" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
-        <input placeholder="Desired Slug" type="string" name="slug" id="slug" class="form-control col mr-2">
+        <input placeholder="Desired Slug (optional)" type="string" name="slug" id="slug" class="form-control col mr-2">
         <button class="btn btn-success" type="submit">Generate!</button>
     </form>
 
@@ -22,7 +22,7 @@
         <thead>
             <tr>
                 <th>Full URL</th>
-                <th>Short URL</th>
+                <th>Slug</th>
                 <th>Clicks</th>
             </tr>
         </thead>
@@ -30,7 +30,7 @@
             <% shortUrls.forEach(shortUrl => { %>
                 <tr>
                     <td><a href="<%= shortUrl.full %>"><%=shortUrl.full %> </a></td>
-                    <td><a href="<%= shortUrl.short %> "><%=shortUrl.short %> </a></td>
+                    <td><a href="<%= shortUrl.slug %> "><%=shortUrl.slug %> </a></td>
                     <td><%= shortUrl.clicks %> </td>
                 </tr>
             <% }) %> 
