@@ -5,13 +5,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express')
-const app = express()
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 const db = mongoose.connection
+const app = express()
+
 
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
+
 
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true, useUnifiedTopology: true
